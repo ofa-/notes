@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Learn to Read Music Free With Notably Quick Guitar</title>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="title"
+    content="Music Note Game" />
+    <meta name="description"
+    content="This is a free online game that helps students learn to read sheet music for the guitar." />
+    <meta name="keywords"
+    content="learn to read music free, learn to read sheetmusic free, notes, grand staff, treble clef, bass clef, game, free, guitar" />
+    <meta name="rating" content="general" />
+    <meta name="author" content="ZipXap Technology - modified by OlafWorks" />
+    <meta name="revised" content="1/5/2011" />
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0" />
+
+	<script type="text/javascript" src="j/jquery.js"></script>
+
+	<script type="text/javascript" src="j/game.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/master.css" />
+    <link rel="stylesheet" type="text/css" href="style/notegame.css" />
+    <!--[if lt IE 7]>
+	<link rel="stylesheet" type="text/css" href="style/master_ie.css" />
+	<![endif]-->
+	
+	 <script type="text/javascript">
+     $(document).ready(function(){
+//	   Validate();
+       Initialize();
+         
+     });
+     
+   </script>
+
+  </head>
+  <body onkeypress="keyPress(event)">
+  <div class="notegame" id="game">
+  <div class="staff"></div>
+  <div class="clef"><img src="i/TrebleClef.png"/></div>
+  <div class="accuracy" id="accuracy">-</div>
+  <div class="accuracyLabel" id="accuracyLabel">Accuracy</div>
+  <img class="guessNote" id="guessNote" style="position:absolute;left:101px;top:46px;z-index:52" src="i/Note_TailDown.gif" alt="currently guessed musical note"/>
+  <div class="guessBox" id="guessBox">Note</div>
+  <div class="guessBoxBottom" id="guessBoxBottom">A</div>
+
+  <div class="scoreBoxLabel" id="scoreBoxLabel">Score</div>
+  <div class="scoreBox" id="scoreBox">0</div>
+  <div class="highScoreBoxLabel" id="highScoreBoxLabel">Your High Score</div>
+  <div class="highScoreBox" id="highScoreBox">0</div>
+  <div class="gameMessage" id="gameMessage"></div>
+  <div class="statusBoard" id="statusBoard">
+		<div class="sbHeadingToday">Today</div>
+		<div class="sbHeadingOverall">Overall</div>
+		<div class="sbHeadingYourStatus" id="sbHeadingYourStatus">Your Status:</div>
+		<div class="sbHeadingHigh">High</div>
+		<div class="sbHeadingLow">Low</div>
+		<div class="sbHeadingAvg">Average</div>
+		<div class="sbHeadingTotalPlays">Total Plays</div>
+		<div class="sbTHigh" id="sbTHigh">0</div>
+		<div class="sbOHigh" id="sbOHigh">0</div>
+		<div class="sbYourStatus" id="sbYourStatus">Amateur</div>
+		<div class="sbTLow" id="sbTLow">0</div>
+		<div class="sbOLow" id="sbOLow">0</div>
+		<div class="sbTAvg" id="sbTAvg">0</div>
+		<div class="sbOAvg" id="sbOAvg">0</div>
+		<div class="sbTTot" id="sbTTot">0</div>
+		<div class="sbOTot" id="sbOTot">0</div>
+  </div>
+  <div class="statusLine" id="statusLine"></div>
+  <div class="copyright" id="copyright">Copyright 2010 ZipXap Technology.  All Rights Reserved.  Enhancements Copyleft 2011 OlafWorks.</div>
+  
+  <input class="startButton" type="button" value="Start Game" onclick="StartGame()" />
+  <input class="stopButton" type="button" value="Stop Game" onclick="EndGame()" />
+  <div class="padLabel" id="a_padlabel" onclick="keyPadPress('A')">A</div>
+  <div class="padLabel" id="b_padlabel" onclick="keyPadPress('B')">B</div>
+  <div class="padLabel" id="c_padlabel" onclick="keyPadPress('C')">C</div>
+  <div class="padLabel" id="d_padlabel" onclick="keyPadPress('D')">D</div>
+  <div class="padLabel" id="e_padlabel" onclick="keyPadPress('E')">E</div>
+  <div class="padLabel" id="f_padlabel" onclick="keyPadPress('F')">F</div>
+  <div class="padLabel" id="g_padlabel" onclick="keyPadPress('G')">G</div>
+  <form action="post">
+	  <input type="button" class="spad" id="as_pad" value=""/>
+	  <input type="button" class="spad" id="cs_pad" value=""/>
+	  <input type="button" class="spad" id="ds_pad" value=""/>
+	  <input type="button" class="spad" id="fs_pad" value=""/>
+	  <input type="button" class="spad" id="gs_pad" value=""/>
+	  <input type="button" class="pad" id="a_pad" onclick="keyPadPress('A')" value=""/>
+	  <input type="button" class="pad" id="b_pad" onclick="keyPadPress('B')" value=""/>
+	  <input type="button" class="pad" id="c_pad" onclick="keyPadPress('C')" value=""/>
+	  <input type="button" class="pad" id="d_pad" onclick="keyPadPress('D')" value=""/>
+	  <input type="button" class="pad" id="e_pad" onclick="keyPadPress('E')" value=""/>
+	  <input type="button" class="pad" id="f_pad" onclick="keyPadPress('F')" value=""/>
+	  <input type="button" class="pad" id="g_pad" onclick="keyPadPress('G')" value=""/>
+  </form>
+
+  <div class="timeBox">Time<div>00:00</div></div>
+  <div id="settings" style="display:none">
+	<div class="game-type"></div>
+	<div class="keyb-type"></div>
+	<div class="sound-mode"></div>
+	<br style="clear:both"/>
+
+	Pitches
+	<div id="pitches">
+		<li label="E3" file="s/E3.wav" midi="52"/>
+		<li label="F3" file="s/F3.wav" midi="53"/>
+		<li label="G3" file="s/G3.wav" midi="55"/>
+		<li label="A3" file="s/A3.wav" midi="57"/>
+		<li label="B3" file="s/B3.wav" midi="59"/>
+		<li label="C4" file="s/C4.wav" midi="60"/>
+		<li label="D4" file="s/D4.wav" midi="62"/>
+		<li label="E4" file="s/E4.wav" midi="64"/>
+		<li label="F4" file="s/F4.wav" midi="65"/>
+		<li label="G4" file="s/G4.wav" midi="67"/>
+		<li label="A4" file="s/A4.wav" midi="69"/>
+		<li label="B4" file="s/B4.wav" midi="71"/>
+		<li label="C5" file="s/C5.wav" midi="72"/>
+		<li label="D5" file="s/D5.wav" midi="74"/>
+		<li label="E5" file="s/E5.wav" midi="76"/>
+		<li label="F5" file="s/F5.wav" midi="77"/>
+		<li label="G5" file="s/G5.wav" midi="79"/>
+		<li label="A5" file="s/A5.wav" midi="81"/>
+		<li label="B5" file="s/B5.wav" midi="83"/>
+		<li label="C6" file="s/C6.wav" midi="84"/>
+		<li label="D6" file="s/D6.wav" midi="86"/>
+		<li label="E6" file="s/E6.wav" midi="88"/>
+	</div>
+
+	Levels
+	<div id="levels">
+		<li label="B" level="1"/>
+		<li label="M" level="10"/>
+		<li label="A" level="15"/>
+		<li label="E" level="20"/>
+	</div>
+	<br/>
+	<input type="button" class="close" value="close"/>
+  </div>
+  <input type="button" class="settingsButton" value="Settings"/>
+  <img class="mute-on" src="i/mute.png"/>
+  <div class="error_message"></div>
+  <div class="loading">
+	Loading sounds...
+	<img src='i/loading.gif'/>
+	<div>
+		<div class="done">Done.</div>
+		<div class="fail">Incomplete.</div>
+		<div class="progress"></div>
+	</div>
+  </div>
+  </div>
+  </body>
+  
+</html>

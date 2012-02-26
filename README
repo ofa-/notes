@@ -1,0 +1,29 @@
+OFA's Notes
+===========
+
+Notes is web-based sight-reading learning tool for guitarists.
+
+Notes builds on and extends ZipXap's Notably Quick Guitar, available at
+http://www.readmusicfree.com/
+
+Additions to the original:
+
+* training notes can be selected for focused learning
+* difficulty level can be selected (Basic, Medium, Advanced, Expert)
+* notes sounds can be played when notes appear or disappear from the screen
+* keyboard input keys can be selected (A-G or S-L)
+* game can be turned into practice mode (continuous play, never loose)
+
+Notes should work with most modern browsers, and has been tested with
+Google Chrome, Mozilla Firefox and Apple Safari.  Notes is slow-ish and
+barely usable on iPhone 3GS.  The settings screen looks best on Chrome,
+sounds play more fluidly with Chrome as well.
+
+The original application, as deployed at readmusicfree, has a high-score
+tracking system.  The tracking system relies on a server-side storage script,
+which is not provided in this release.  Client-side code is still in though.
+
+Notes is available online at
+http://olafworks.free.fr/notes/
+
+Enjoy.

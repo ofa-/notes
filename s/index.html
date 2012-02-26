@@ -1,0 +1,126 @@
+<html>
+<script>
+var notes = [
+"E3", "F3", "G3", "A3", "B3",
+"C4", "D4", "E4", "F4", "G4", "A4", "B4",
+"C5", "D5", "E5", "F5", "G5", "A5", "B5",
+"C6", "D6", "E6",
+];
+
+var curr = null;
+var buttons = [];
+var keymap = {	typed:	" J,NJ,VJ, K,BK,VK, L,BL,VL, U,BU,CU, I,NI,VI, O,NO,VO,HO,FO,DO,YO,RO",
+		mapped:	"E3 F3 G3 A3 B3 C4 D4 E4 F4 G4 A4 B4 B4 C5 D5 E5 F5 G5 A5 B5 C6 D6 E6",
+		finger: 32,
+		string: 32,
+		get_note: function () {
+			var i = this.typed.indexOf(String.fromCharCode(this.finger) + String.fromCharCode(this.string));
+			return i == -1 ? "" : this.mapped.substr(i,2);
+		},
+		handle_keydown: function(keycode) {
+			if ("JKLUIO".indexOf(String.fromCharCode(keycode)) != -1) {
+				this.string = keycode;
+			}
+			else {
+				this.finger = keycode;
+			}
+		},
+		handle_keyup: function (keycode) {
+			if (keycode == this.finger) {
+				this.finger = 32;
+			}
+			if (keycode == this.string) {
+				this.string = 32;
+			}
+		} 
+	     };
+
+function play(button) {
+	stop();
+	curr = button;
+	curr.sound.play();
+	curr.style.textDecoration = "";
+	curr.style.fontSize = "20";
+}
+
+function stop() {
+	if (curr) {
+		curr.sound.pause();
+		curr.sound.currentTime = 0;
+		curr.style.fontSize = "";
+		curr = null;
+	}
+}
+
+function create_buttons() {
+	for (var i in notes) {
+		var button = document.createElement("input");
+		button.setAttribute("type", "button");
+		button.setAttribute("value", notes[i]);
+		button.sound = new Audio(button.value + ".wav");
+		button.onclick = function () { play(this); };
+		button.sound.button = button;
+		button.sound.addEventListener("ended", stop, true);
+		document.body.appendChild(button);
+		buttons[button.value] = button;
+	}
+}
+
+function add_keyboard_handler() {
+	document.addEventListener("keydown",
+			function (e) {
+				keymap.handle_keydown(e.keyCode);
+				var note = keymap.get_note();
+				if (note) play(buttons[note]);
+			}
+			, true);
+	document.addEventListener("keyup",
+			function (e) {
+				keymap.handle_keyup(e.keyCode);
+			}
+			, true);
+}
+
+function init() {
+	create_buttons();
+	add_keyboard_handler();
+}
+
+
+</script>
+<body onload="init()">
+<pre>
+To play a note, hit the desired "string" and "finger" keys together.
+To play open string notes, hit the "string" key alone.
+
+Key mappings
+Strings: j,k,l,u,i,o  : strings E,A,D,G,B,E
+Fingers: c,v,b,n      : fingers 4,3,2,1 in 1st position
+         d,f,g,h      : fingers 4,3,2,1 in 5th position
+         e,r,t,y      : fingers 4,3,2,1 in 9th position
+</pre>
+
+<!--
+<script>
+function play_test(n) {
+	alert("about to play: " + n);
+	try {
+	var x = new Audio(n+".wav");
+	x.addEventListener("error", sound_error, true);
+	x.load();
+	x.play();
+	}
+	catch (e) {
+		alert(e);
+	}
+}
+function sound_error(e) {
+	alert("error playing sound: " + e);
+}
+</script>
+<input type=button value="test" onclick="play_test('E3')"/>
+-->
+
+</body>
+</html>
+

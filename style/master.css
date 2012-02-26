@@ -1,0 +1,322 @@
+/* main document styles */
+body
+{
+	margin: 0;
+	padding: 0;
+	font: normal 0.7em/1.4em Tahoma, Verdana, Arial, Georgia, sans-serif;
+	color: #606060;
+}
+
+div#container
+{
+	width: 533px;
+	margin: 30px auto;
+	padding: 1px;
+	background-color: #FFF;
+	overflow: hidden;
+}
+
+div#container div#body
+{
+	width: 500px;
+	min-height: 250px;
+	margin: 0;
+	padding: 8px 15px 8px 15px;
+	clear: both;
+	border-top: 1px solid #000;
+	border-right: 2px solid #333;
+	border-bottom: 2px solid #333;
+	border-left: 1px solid #000;
+}
+
+h1
+{
+	width: 200px;
+	margin: 0 9px 0 0;
+	float: right;
+}
+
+h2
+{
+	display: none;
+	margin: 0;
+	float: right;
+	clear: right;
+}
+
+h1 a
+{
+	display: block;
+	width: 195px;
+	height: 26px;
+	margin: 0;
+	background: #fff url('../i/kp.gif') no-repeat center;
+}
+
+h2 a
+{
+	display: block;
+	width: 157px;
+	height: 21px;
+	margin: 0;
+	background: #fff url('../i/software.gif') no-repeat center;
+}
+
+h1 a span, h2 a span
+{
+	display: none;
+}
+
+h3
+{
+	margin: 10px 0 0 0;
+	padding: 0 1px;
+	border-bottom: solid 1px #555;
+	text-align: right;
+	font-size: 14px;
+	color: #555;
+}
+
+h4
+{
+	display: none;
+}
+
+h5
+{
+	display: none;
+	font-size: 11px;
+}
+
+dl
+{
+	width: auto;
+	margin: 15px 0 0 0;
+	padding: 0;
+	overflow: hidden;
+	clear: both;
+}
+
+/* Contact information styles */
+address
+{
+	margin: 15px 1px;
+	text-align: right;
+}
+
+span#contact
+{
+	display: block;
+	width: 74px;
+	margin: 0 0 0 auto;
+}
+
+span#contact a
+{
+	display: block;
+	width: 74px;
+	height: 10px;
+	margin: 4px 0;
+	background: transparent url('../i/contact.gif') no-repeat left top;
+}
+
+span#contact a:hover
+{
+	background-position: left bottom; 
+}
+
+/* Navigation menu styles */
+ul#nav
+{
+	width: 300px;
+	margin: 3px 0 0 0;
+	padding: 0;
+	list-style-type: none;
+	font: bold 11px Arial, Helvetica, sans-serif;
+}
+
+ul#nav li
+{
+	display: block;
+	margin: 0 1px 0 0;
+	float: left;
+}
+
+ul#nav li#selected
+{
+	background: #000 url('../i/tab.gif') no-repeat left top;
+	color: #ff9900;
+	cursor: default;
+}
+
+ul#nav li#selected span
+{
+	display: block;
+	margin: 0 0 0 6px;
+	padding: 5px 15px 5px 9px;
+	background: #000 url('../i/tab.gif') no-repeat right top;
+}
+
+ul#nav li#selected a
+{
+	padding: 0;
+	color: #ff9900;
+}
+
+ul#nav li#selected a:hover
+{
+	color: #ffc000;
+}
+
+ul#nav li a
+{
+	display: block;
+	padding: 0 0 0 6px;
+	background: #000 url('../i/tab.gif') no-repeat left top;
+	color: #c0c0c0;
+	text-decoration: none;
+}
+
+ul#nav li a:hover
+{
+	color: #ffffff;
+}
+
+
+ul#nav li a span
+{
+	display: block;
+	padding: 5px 15px 5px 9px;
+	background: #000 url('../i/tab.gif') no-repeat right top;
+}
+
+/* Breadcrumb navigation styles */
+ul#breadcrumb
+{
+	margin: 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+	list-style-type: none;
+	font: bold 10px Arial, Helvetica, sans-serif;
+}
+
+ul#breadcrumb li
+{
+	display: block;
+	margin: 0;
+	padding: 3px 0;
+	float: left;	
+}
+
+ul#breadcrumb li#selected
+{
+	padding: 3px 0;	
+}
+
+ul#breadcrumb li#selected span
+{
+	display: block;
+	padding: 0 0 0 10px;
+	border-left: 1px solid #999;
+	color: #ff6600;
+	cursor: default;
+}
+
+ul#breadcrumb li.first#selected span
+{
+	border: 0;
+}
+
+ul#breadcrumb li a
+{
+	display: block;
+	color: #6f6f6f;
+	text-decoration: none;
+}
+
+ul#breadcrumb li a:hover
+{
+	color: #000;
+}
+
+ul#breadcrumb li a span
+{
+	display: block;
+	padding: 0 10px;
+	border-left: 1px solid #909090;
+}
+
+ul#breadcrumb li.first a span
+{
+	padding-left: 0;
+	border: 0;
+}
+
+/* Footer navigation styles */
+ul#footnav
+{
+	margin: 0;
+	padding: 0 1px;
+	float: right;
+	clear: both;
+	list-style-type: none;
+	font: bold 10px Arial, Helvetica, sans-serif;
+}
+
+ul#footnav li
+{
+	display: block;
+	margin: 0;
+	padding: 5px 0;
+	float: left;		
+}
+
+ul#footnav li#selected span
+{
+	display: block;
+	padding: 0 10px;
+	border-left: 1px solid #999;
+	color: #ff6600;
+	cursor: default;
+}
+
+ul#footnav li.first#selected span
+{
+	border: 0;
+}
+
+ul#footnav li#selected a span
+{
+	cursor: pointer;
+}
+
+ul#footnav li#selected a:hover span
+{
+	color: #ff9000;
+}
+
+ul#footnav li a
+{
+	display: block;
+	color: #6f6f6f;
+	text-decoration: none;
+}
+
+ul#footnav li a:hover
+{
+	color: #333;
+}
+
+ul#footnav li a span
+{
+	display: block;
+	padding: 0 10px;
+	border-left: 1px solid #909090;
+}
+
+ul#footnav li.first a span
+{
+	border: 0;
+}
+

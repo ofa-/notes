@@ -1,0 +1,28 @@
+<html>
+<head>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0" />
+</head>
+<style>
+input { font-size: x-large; }
+body { text-align: center; border: 1px solid red; }
+input { width: 5em; height: 5em; margin-top: 6em; }
+</style>
+<script>
+function play(audioId, load) {
+	var audio = document.getElementById(audioId);
+	if (load) {
+		audio.load();
+		sty = audio.parentNode.style;
+		sty.display = sty.display == "" ? "none" : "";
+	}
+	else
+		audio.play();
+
+}
+</script>
+<input type=button value=Play onclick="play('audio');"/>
+<input type=button value=Load onclick="play('audio', true);"/>
+<div style="display:none">
+<audio id=audio src="err1.wav" controls/>
+</div>
