@@ -23,7 +23,7 @@ The original application, as deployed at readmusicfree, has a high-score
 tracking system.  The tracking system relies on a server-side storage script,
 which is not provided in this release.  Client-side code is still in though.
 
-Notes is available online at
-http://olafworks.free.fr/notes/
+To install Notes on the web, checkout the project and upload it to your server.
+Notes also works fine as a local webapp, via file:///<app_dir>/index.html
 
 Enjoy.
